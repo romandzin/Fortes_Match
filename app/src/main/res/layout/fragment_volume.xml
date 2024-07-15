@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VolumeFragment"
+    android:background="@drawable/universal_background">
+
+    <ImageView
+        android:id="@+id/options_element"
+        android:layout_width="400dp"
+        android:layout_height="560dp"
+        android:src="@drawable/options_element"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/settingsButton"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/settings_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/options_element"/>
+
+    <ImageView
+        android:id="@+id/seekbar_bg_music"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/seek_background"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/music" />
+
+    <SeekBar
+        android:id="@+id/music_seek"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:splitTrack="false"
+        android:indeterminate="false"
+        android:thumb="@drawable/thumb"
+        android:progress="5"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        app:layout_constraintStart_toStartOf="@id/seekbar_bg_music"
+        app:layout_constraintEnd_toEndOf="@id/seekbar_bg_music"
+        app:layout_constraintTop_toTopOf="@id/seekbar_bg_music"
+        app:layout_constraintBottom_toBottomOf="@id/seekbar_bg_music"/>
+    
+    <ImageView
+        android:id="@+id/audio"
+        android:layout_width="155dp"
+        android:layout_height="40dp"
+        android:src="@drawable/audio"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/music"
+        android:layout_width="92dp"
+        android:layout_height="29dp"
+        android:src="@drawable/music"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="@id/options_element"
+        app:layout_constraintTop_toBottomOf="@id/audio"/>
+
+    <ImageView
+        android:id="@+id/sound_effect"
+        android:layout_width="223dp"
+        android:layout_height="40dp"
+        android:src="@drawable/sound_effects"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="@id/options_element"
+        app:layout_constraintTop_toBottomOf="@id/seekbar_bg_music"/>
+
+    <ImageView
+        android:id="@+id/seekbar_bg_sound"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/seek_background"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sound_effect" />
+
+    <SeekBar
+        android:id="@+id/sound_seek"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:splitTrack="false"
+        android:indeterminate="false"
+        android:thumb="@drawable/thumb"
+        android:progress="5"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        app:layout_constraintStart_toStartOf="@id/seekbar_bg_sound"
+        app:layout_constraintEnd_toEndOf="@id/seekbar_bg_sound"
+        app:layout_constraintTop_toTopOf="@id/seekbar_bg_sound"
+        app:layout_constraintBottom_toBottomOf="@id/seekbar_bg_sound"/>
+    
+    <ImageView
+        android:id="@+id/continue_button"
+        android:layout_width="110dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/continue_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekbar_bg_sound"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

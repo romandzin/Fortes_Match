@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/seek_bar_progress_fill"
+        android:id="@+id/green_gradient" />
+    <item
+        android:drawable="@drawable/light_gradient"
+        android:id="@+id/half_overlay"
+        android:bottom="480dp" />
+</layer-list>
