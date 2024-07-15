@@ -1,55 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/universal_background"
-    tools:context=".MenuActivity">
+    android:background="@drawable/universal_background">
 
     <ImageView
         android:id="@+id/menu_layout"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:src="@drawable/menu_png"
+        android:src="@drawable/winner_banner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/playButton"
+        android:id="@+id/nothing"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/play_button"
         app:layout_constraintBottom_toBottomOf="@id/menu_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/menu_layout" />
 
     <ImageView
-        android:id="@+id/optionsButton"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:src="@drawable/options_button"
+        android:id="@+id/green_background"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:src="@drawable/green_background"
         app:layout_constraintBottom_toTopOf="@id/exitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playButton" />
+        app:layout_constraintTop_toBottomOf="@id/nothing" />
+
+    <ImageView
+        android:id="@+id/coin_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/points_icon"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/green_background"
+        app:layout_constraintEnd_toStartOf="@id/points_text"
+        app:layout_constraintStart_toStartOf="@id/green_background"
+        app:layout_constraintTop_toTopOf="@id/green_background" />
+
+    <TextView
+        android:id="@+id/points_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="+3000"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/green_background"
+        app:layout_constraintEnd_toEndOf="@id/green_background"
+        app:layout_constraintStart_toEndOf="@id/coin_icon"
+        app:layout_constraintTop_toTopOf="@id/green_background" />
 
     <ImageView
         android:id="@+id/exitButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="60dp"
-        android:src="@drawable/exit_button"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/continue_button"
         app:layout_constraintBottom_toBottomOf="@id/menu_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/optionsButton" />
-    
+
     <ImageView
         android:id="@+id/settingsButton"
         android:layout_width="68dp"
@@ -59,9 +82,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/menu_layout"/>
-
-    <include
-        android:id="@+id/exit_screen"
-        android:visibility="gone"
-        layout="@layout/exit_screen"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

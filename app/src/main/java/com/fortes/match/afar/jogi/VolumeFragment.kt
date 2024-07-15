@@ -13,7 +13,7 @@ import com.fortes.match.afar.jogi.databinding.FragmentVolumeBinding
 
 class VolumeFragment : Fragment() {
 
-    lateinit var binding: FragmentVolumeBinding
+    private lateinit var binding: FragmentVolumeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
