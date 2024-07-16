@@ -44,7 +44,7 @@ class VolumeFragment : Fragment() {
             (activity as Navigator).goBack()
             soundPlayer.start()
         }
-        binding.optionsElement.setOnClickListener {
+        binding.settingsButton.setOnClickListener {
             (activity as Navigator).goBack()
             soundPlayer.start()
         }

@@ -1,5 +1,6 @@
 package com.fortes.match.afar.jogi
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
@@ -19,6 +20,9 @@ import kotlin.random.Random
 class GameActivity : AppCompatActivity(), Navigator {
 
     private var binding: ActivityGameBinding? = null
+    private lateinit var clickPlayer: MediaPlayer
+    private lateinit var musicPlayer: MediaPlayer
+    private lateinit var explosionPlayer: MediaPlayer
 
     private val elementsImages = arrayOf(
         R.drawable.element_1, R.drawable.element_2,
@@ -38,6 +42,21 @@ class GameActivity : AppCompatActivity(), Navigator {
             checkResults()
         }
 
+    }
+
+    private fun turnOnSound() {
+        clickPlayer = MediaPlayer.create(this, R.raw.click_sound)
+        clickPlayer.isLooping = false
+        clickPlayer.setVolume(VolumeData.clickVolume, VolumeData.clickVolume)
+
+        explosionPlayer = MediaPlayer.create(this, R.raw.explosion)
+        explosionPlayer.isLooping = false
+        explosionPlayer.setVolume(VolumeData.clickVolume, VolumeData.clickVolume)
+
+        musicPlayer = MediaPlayer.create(this, R.raw.music)
+        musicPlayer.isLooping = true
+        musicPlayer.setVolume(VolumeData.musicVolume, VolumeData.musicVolume)
+        musicPlayer.start()
     }
 
     private val elementsViews: Array<View> by lazy {
@@ -113,7 +132,13 @@ class GameActivity : AppCompatActivity(), Navigator {
         }
         binding!!.restartButton.setOnClickListener {
             refreshScreen()
+            clickPlayer.start()
         }
+        binding!!.settingsButton.setOnClickListener {
+            clickPlayer.start()
+            showSettingsScreen()
+        }
+        turnOnSound()
         setFullWindow()
     }
 
@@ -129,9 +154,11 @@ class GameActivity : AppCompatActivity(), Navigator {
             it.winScreen.root.isVisible = true
             it.winScreen.pointsText.text = "+$coins"
             it.winScreen.settingsButton.setOnClickListener {
+                clickPlayer.start()
                 showSettingsScreen()
             }
             it.winScreen.exitButton.setOnClickListener {
+                clickPlayer.start()
                 onBackPressed()
             }
         }
@@ -141,9 +168,11 @@ class GameActivity : AppCompatActivity(), Navigator {
         binding?.let {
             it.looseScreen.root.isVisible = true
             it.looseScreen.settingsButton.setOnClickListener {
+                clickPlayer.start()
                 showSettingsScreen()
             }
             it.looseScreen.exit.setOnClickListener {
+                clickPlayer.start()
                 onBackPressed()
             }
         }
@@ -158,7 +187,13 @@ class GameActivity : AppCompatActivity(), Navigator {
     private fun showSettingsScreen() {
         supportFragmentManager.beginTransaction()
             .replace(binding?.fragmentContainer!!.id, VolumeFragment())
+            .addToBackStack("name")
             .commit()
+        binding?.let {
+            it.restartButton.isVisible = false
+            it.settingsButton.isVisible = false
+            it.fragmentContainer.isVisible = true
+        }
     }
 
     private fun createList(): MutableList<Element> {
@@ -215,6 +250,7 @@ class GameActivity : AppCompatActivity(), Navigator {
         clicksEnabled = true
         element.view.setBackgroundResource(element.image)
         element.view.setOnClickListener {
+            clickPlayer.start()
             if (clicksEnabled) {
                 if (firstClicked == null) firstClicked = element
                 else {
@@ -388,6 +424,7 @@ class GameActivity : AppCompatActivity(), Navigator {
             getPoints(rowMatch.toList())
             startedToClear = true
             clearMatches(rowMatch.toList(), true)
+            explosionPlayer.start()
             cleared = true
         }
 
@@ -395,6 +432,7 @@ class GameActivity : AppCompatActivity(), Navigator {
             getPoints(columnMatch.toList())
             startedToClear = true
             clearMatches(columnMatch.toList(), false)
+            explosionPlayer.start()
             cleared = true
         }
         return cleared
@@ -637,6 +675,13 @@ class GameActivity : AppCompatActivity(), Navigator {
     }
 
     override fun goBack() {
-        onBackPressed()
+        if (supportFragmentManager.backStackEntryCount != 0) {
+            supportFragmentManager.popBackStack()
+            binding?.let {
+                it.restartButton.isVisible = true
+                it.settingsButton.isVisible = true
+            }
+        }
+        else onBackPressed()
     }
 }
